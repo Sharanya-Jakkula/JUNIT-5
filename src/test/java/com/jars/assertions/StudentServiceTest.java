@@ -134,4 +134,50 @@ class StudentServiceTest {
 
 
     }
+
+    @Test
+    public void getStudentIdListByDepartmentTestUsingAssertIterableEquals() {
+        StudentService studentService = new StudentService();
+        Student student1 = new Student(1, "bunny", "Computer Science");
+        Student student2 = new Student(2, "alice", "Computer Science");
+        Student student3 = new Student(3, "bob", "Mathematics");
+
+        studentService.addStudent(student1);
+        studentService.addStudent(student2);
+        studentService.addStudent(student3);
+
+        List<Integer> expectedIds = List.of(1, 2);
+        List<Integer> actualIds = studentService.getStudentIdListByDepartment("Computer Science");
+
+        assertIterableEquals(expectedIds, actualIds, "Student IDs should match for Computer Science department");
+    }
+
+    @Test
+    public void getStudentNameListByDepartmentTestUsingAssertIterableEquals() {
+        StudentService studentService = new StudentService();
+        Student student1 = new Student(1, "bunny", "Computer Science");
+        Student student2 = new Student(2, "alice", "Computer Science");
+        Student student3 = new Student(3, "bob", "Mathematics");
+
+        studentService.addStudent(student1);
+        studentService.addStudent(student2);
+        studentService.addStudent(student3);
+
+        List<String> expectedNames = List.of("bunny", "alice");
+//        List<String> expectedNames = List.of("bun", "alice");
+        List<String> actualNames = studentService.getStudentNameListByDepartment("Computer Science");
+
+        assertIterableEquals(expectedNames, actualNames, "Student names should match for Computer Science department");
+    }
+
+
+
+//    @Test
+//    public void getStudentByNameTestUsingAssertThrows(){
+//        StudentService studentService=new StudentService();
+//        Student student=new Student(1,"bunny","cse");
+//        studentService.addStudent(student);
+////        assertThrows()
+//
+//    }
     }
