@@ -1,6 +1,7 @@
 package com.jars.assertions;
 
 import com.jars.Student;
+import com.jars.StudentNotFoundException;
 import com.jars.StudentService;
 import org.junit.jupiter.api.Test;
 
@@ -168,16 +169,43 @@ class StudentServiceTest {
         List<String> actualNames = studentService.getStudentNameListByDepartment("Computer Science");
 
         assertIterableEquals(expectedNames, actualNames, "Student names should match for Computer Science department");
+
     }
 
 
 
-//    @Test
-//    public void getStudentByNameTestUsingAssertThrows(){
-//        StudentService studentService=new StudentService();
-//        Student student=new Student(1,"bunny","cse");
-//        studentService.addStudent(student);
-////        assertThrows()
-//
-//    }
+
+
+    @Test
+    public void getStudentByNameTestUsingAssertThrows(){
+        StudentService studentService=new StudentService();
+        Student student=new Student(1,"bunny","cse");
+        studentService.addStudent(student);
+
+//        assertThrows(StudentNotFoundException.class,()->{
+////            studentService.getStudentByName("bunny");
+//            studentService.getStudentByName("bun");
+//        });
+
+//        assertThrows(NullPointerException.class,()->{
+//            studentService.getStudentByName("bun");
+//        });
+
+
+//        assertThrows(StudentNotFoundException.class,()->{
+////            studentService.getStudentByName("bunny");
+//            studentService.getStudentByName("bun");
+//        },"StudentNotFoundException should be thrown but it wasn't");
+
+//        assertThrows(StudentNotFoundException.class,()->{
+//            studentService.getStudentByName("bunny");
+//        },()->"StudentNotFoundException should be thrown but it wasn't");
+
+  assertThrows(RuntimeException.class,()->{
+            studentService.getStudentByName("bunn");
+//            studentService.getStudentByName("bunny"); //fails
+        },()->"StudentNotFoundException should be thrown but it wasn't");
+
+
+    }
     }
