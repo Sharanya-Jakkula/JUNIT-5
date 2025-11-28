@@ -54,4 +54,21 @@ class StudentServiceTest {
         assertFalse(()->actualResult,()->"Student list cannot be empty");
     }
 
+    @Test
+    public void getStudentByIdTestUsingAssertNull(){
+        StudentService studentService=new StudentService();
+        Student student=new Student(1,"bunny");
+        studentService.addStudent(student);
+        Student actualObject=studentService.getStudentById(1); //fail
+//        Student actualObject=studentService.getStudentById(3); //pass
+
+//        assertNull(actualObject);
+
+//        assertNull(actualObject,"Student object is not null");
+
+//        assertNull(actualObject,()->"Student object is not null");
+
+
+    }
+
 }
