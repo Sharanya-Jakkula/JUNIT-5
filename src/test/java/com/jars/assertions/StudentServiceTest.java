@@ -108,4 +108,30 @@ class StudentServiceTest {
         assertEquals("bunny",actualObject.getName(),()->"Student name is not found");
 //        assertEquals("bun",actualObject.getName(),()->"Student name is not found");
     }
+
+
+
+    @Test
+    public void getStudentByIdTestUsingAssertNotEquals(){
+        StudentService studentService=new StudentService();
+        Student student=new Student(1,"bunny");
+        studentService.addStudent(student);
+
+        Student actualObject=studentService.getStudentById(1);
+
+//        assertNotEquals(1,actualObject.getId());
+//        assertNotEquals(3,actualObject.getId());
+
+//        assertNotEquals("bunny",actualObject.getName());
+        assertNotEquals("bun",actualObject.getName());
+
+//        assertNotEquals(1,actualObject.getId(),"Student ID are equal");
+        assertNotEquals(3,actualObject.getId(),"Student ID are equal");
+
+//        assertNotEquals("bunny",actualObject.getName(),()->"Student names are equal");
+
+        assertNotEquals(student,actualObject);
+
+
+    }
     }
