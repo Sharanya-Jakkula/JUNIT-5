@@ -18,7 +18,18 @@ class StudentServiceTest {
         studentService.addStudent(student);
 
         boolean actualResult=listOfStudents.isEmpty(); //false
-        assertTrue(actualResult);
+//        assertTrue(actualResult);
+
+        //lazy
+//        assertTrue(()->actualResult); //boolean supplier
+
+//        assertTrue(actualResult,"List of Students is Empty");
+
+//        assertTrue(()->actualResult,"List of Students is empty");
+
+//        assertTrue(actualResult,()->"List of Students is Empty");
+
+        assertTrue(()->actualResult,()->"List of Students is Empty");
     }
 
 }
