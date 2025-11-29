@@ -21,11 +21,11 @@ public class StudentService {
                 .findFirst()
                 .orElse(null);
     }
-    public  List<String> getStudentNameListByDepartment(String department){
+    public String[] getStudentNameListByDepartment(String department){
         return students.stream()
                 .filter((student -> student.getDepartment().equals(department)))
                 .map(Student::getName)
-                .collect(Collectors.toList());
+                .toArray(String[]::new);
     }
 
     public  List<Integer> getStudentIdListByDepartment(String department){

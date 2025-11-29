@@ -5,6 +5,7 @@ import com.jars.StudentNotFoundException;
 import com.jars.StudentService;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -164,11 +165,32 @@ class StudentServiceTest {
         studentService.addStudent(student2);
         studentService.addStudent(student3);
 
-        List<String> expectedNames = List.of("bunny", "alice");
-//        List<String> expectedNames = List.of("bun", "alice");
-        List<String> actualNames = studentService.getStudentNameListByDepartment("Computer Science");
+//        String[] expectedNames = {"bunny", "alice"};
+        List<String> expectedNames = List.of("bun", "alice");
 
-        assertIterableEquals(expectedNames, actualNames, "Student names should match for Computer Science department");
+//        List<String> expectedNames = List.of("bun", "alice");
+        String[] actualNames = studentService.getStudentNameListByDepartment("Computer Science");
+
+        assertIterableEquals(expectedNames, Arrays.stream(actualNames).toList(), "Student names should match for Computer Science department");
+
+    }
+
+    @Test
+    public void getStudentNameListByDepartmentTestUsingAssertArrayEquals() {
+        StudentService studentService = new StudentService();
+        Student student1 = new Student(1, "bunny", "Computer Science");
+        Student student2 = new Student(2, "alice", "Computer Science");
+        Student student3 = new Student(3, "bob", "Mathematics");
+
+        studentService.addStudent(student1);
+        studentService.addStudent(student2);
+        studentService.addStudent(student3);
+
+        String[] expectedNames = {"bunny", "alice"};
+//        List<String> expectedNames = List.of("bun", "alice");
+        String[] actualNames = studentService.getStudentNameListByDepartment("Computer Science");
+
+        assertArrayEquals(expectedNames,actualNames, "Student names should match for Computer Science department");
 
     }
 
